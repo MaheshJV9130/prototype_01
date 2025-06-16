@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from "react";
 import cartContext from "../context/cartItems";
-import { FaChevronLeft, FaChevronRight } from "react-icons/fa"; // Add this import
+import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const url = "https://fakestoreapi.com/products";
 
@@ -9,21 +9,15 @@ const StarRating = ({ rating }) => {
   for (let i = 1; i <= 5; i++) {
     if (rating >= i) {
       stars.push(
-        <span key={i} className="text-yellow-400 text-lg">
-          ★
-        </span>
+        <span key={i} className="text-yellow-400 text-lg">★</span>
       );
     } else if (rating >= i - 0.5) {
       stars.push(
-        <span key={i} className="text-yellow-400 text-lg">
-          ☆
-        </span>
+        <span key={i} className="text-yellow-400 text-lg">☆</span>
       );
     } else {
       stars.push(
-        <span key={i} className="text-gray-300 text-lg">
-          ★
-        </span>
+        <span key={i} className="text-gray-300 text-lg">★</span>
       );
     }
   }
@@ -39,8 +33,8 @@ const NewArrivals = () => {
   const [showRightArrow, setShowRightArrow] = useState(true);
 
   const getProducts = async () => {
-    let req = await fetch(url);
-    let res = await req.json();
+    const req = await fetch(url);
+    const res = await req.json();
     setProducts(res);
   };
 
@@ -48,7 +42,6 @@ const NewArrivals = () => {
     getProducts();
   }, []);
 
-  // Scroll handler
   const scrollByCard = (direction) => {
     if (scrollRef.current) {
       const scrollAmount = window.innerWidth;
@@ -59,7 +52,6 @@ const NewArrivals = () => {
     }
   };
 
-  // Update arrow visibility on scroll
   const handleScroll = () => {
     const el = scrollRef.current;
     if (!el) return;
@@ -67,7 +59,6 @@ const NewArrivals = () => {
     setShowRightArrow(el.scrollLeft + el.offsetWidth < el.scrollWidth - 10);
   };
 
-  // Ensure arrow visibility updates on scroll and when products load
   useEffect(() => {
     handleScroll();
   }, [products]);
@@ -78,7 +69,7 @@ const NewArrivals = () => {
         NEW ARRIVALS
       </h2>
       <div className="relative">
-        {/* Arrow buttons for mobile */}
+        {/* Arrows for mobile */}
         <div className="flex justify-between items-center mb-4 px-4 sm:hidden">
           {showLeftArrow ? (
             <button
@@ -99,14 +90,15 @@ const NewArrivals = () => {
             </button>
           ) : <span style={{ width: 40 }}></span>}
         </div>
-        {/* Blur effect for horizontal scroll */}
+
+        {/* Products scroll container */}
         <div
           ref={scrollRef}
           onScroll={handleScroll}
           className="
             flex flex-nowrap gap-8 mb-10
             overflow-x-auto pl-0
-            md:flex-wrap md:overflow-visible
+            md:flex-wrap md:overflow-visible md:justify-center
           "
           style={{
             WebkitOverflowScrolling: "touch",
@@ -131,7 +123,6 @@ const NewArrivals = () => {
                 display: "flex",
                 flexDirection: "column",
                 justifyContent: "space-between",
-                marginLeft: idx === 0 ? 0 : undefined, // Ensures no gap before first card
               }}
             >
               <div
@@ -157,7 +148,6 @@ const NewArrivals = () => {
                     {product.rating.rate}/5 ({product.rating.count})
                   </span>
                 </div>
-                <div className="mb-2"></div>
               </div>
               <div className="flex items-center gap-3 mt-2">
                 <span className="font-bold text-2xl">
@@ -175,10 +165,13 @@ const NewArrivals = () => {
             </div>
           ))}
         </div>
-        {/* Blur effect for horizontal scroll on mobile */}
+
+        {/* Blur edges on mobile */}
         <div className="pointer-events-none absolute left-0 top-0 h-full w-8 bg-gradient-to-r from-white via-white/80 to-transparent z-10 sm:hidden"></div>
         <div className="pointer-events-none absolute right-0 top-0 h-full w-8 bg-gradient-to-l from-white via-white/80 to-transparent z-10 sm:hidden"></div>
       </div>
+
+      {/* View All Button */}
       <div className="flex justify-center mb-6">
         <button className="border border-gray-200 rounded-3xl px-12 py-3 bg-white text-lg font-medium cursor-pointer transition hover:bg-gray-100">
           View All

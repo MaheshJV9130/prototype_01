@@ -33,6 +33,7 @@ const NavigationBar = () => {
         >
           <FontAwesomeIcon icon={faBars} />
         </button>
+
         {/* Center: Logo */}
         <a
           href="/"
@@ -42,8 +43,23 @@ const NavigationBar = () => {
             SHOP.CO
           </span>
         </a>
+
+        {/* Desktop Nav Links */}
+        <div className="hidden md:flex flex-1 justify-center ml-6">
+          <ol className="flex gap-8 text-black font-medium text-base items-center">
+            <li>
+              <select className="bg-transparent outline-none cursor-pointer">
+                <option value="">Shop</option>
+              </select>
+            </li>
+            <li className="cursor-pointer">On Sale</li>
+            <li className="cursor-pointer">New Arrivals</li>
+            <li className="cursor-pointer">Brands</li>
+          </ol>
+        </div>
+
         {/* Desktop Search Input */}
-        <div className="hidden md:flex flex-1 justify-center px-4">
+        <div className="hidden md:flex flex-1 justify-end px-4">
           <div className="relative w-full max-w-xs">
             <input
               type="text"
@@ -56,9 +72,10 @@ const NavigationBar = () => {
             />
           </div>
         </div>
+
         {/* Right: Icons */}
         <div className="flex items-center gap-4 md:gap-6">
-          {/* Show search icon only on mobile */}
+          {/* Search icon only on mobile */}
           <button
             className="text-black text-xl hover:text-gray-600 cursor-pointer md:hidden"
             aria-label="Search"
@@ -66,13 +83,15 @@ const NavigationBar = () => {
           >
             <FontAwesomeIcon icon={faMagnifyingGlass} />
           </button>
+
           <button
             className="text-black text-xl hover:text-gray-600 cursor-pointer"
             aria-label="Cart"
           >
-            <FontAwesomeIcon icon={faCartShopping} />{" "}
+            <FontAwesomeIcon icon={faCartShopping} />
             <span className="text-base align-top">{cartItems}</span>
           </button>
+
           <button
             className="text-black text-xl hover:text-gray-600 cursor-pointer"
             aria-label="User"
@@ -80,6 +99,7 @@ const NavigationBar = () => {
             <FontAwesomeIcon icon={faUser} />
           </button>
         </div>
+
         {/* Mobile Menu */}
         {menuOpen && (
           <div
@@ -110,6 +130,7 @@ const NavigationBar = () => {
             </div>
           </div>
         )}
+
         {/* Mobile Search Input Overlay */}
         {showMobileSearch && (
           <div
