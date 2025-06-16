@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+@font-face {
+  font-family: 'MyFont';
+  src: url('./assets/font/Fontspring-DEMO-integralcf-regularoblique.otf') format('opentype');
+}
+body{
+ font-family: "Inter", sans-serif;
+ margin: 0;
+ padding: 0;
+}
+.heroText{
+  font-family: "MyFont", sans-serif;
+  font-weight: bolder;
+  
+}
+  
