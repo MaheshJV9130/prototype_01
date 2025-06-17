@@ -12,6 +12,7 @@ import cartContext from "../context/cartItems";
 const NavigationBar = () => {
   const { cartItems } = useContext(cartContext);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [isLogged, setIsLogged] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const searchInputRef = useRef(null);
 
@@ -24,6 +25,22 @@ const NavigationBar = () => {
 
   return (
     <nav className="w-full bg-white border-b border-gray-200 fixed top-0 left-0 z-50">
+      <div className={`w-full bg-black text-white p-4 relative text-center ${isLogged && 'hidden'}`}>
+        <p className="text-sm sm:text-base max-w-[90%] mx-auto">
+          Sign up and get 20% off your first order.{" "}
+          <a className="underline underline-offset-2 font-bold" href="/">
+            Sign Up Now
+          </a>
+        </p>
+        <button
+          className="absolute top-2 right-2 p-2 text-white focus:outline-none z-10"
+          aria-label="Close"
+          onClick={()=>setIsLogged(true)}
+        >
+          <FontAwesomeIcon icon={faXmark} />
+        </button>
+      </div>
+
       <div className="max-w-screen-xl mx-auto flex items-center justify-between h-14 px-3 md:px-6 relative">
         {/* Left: Hamburger */}
         <button
