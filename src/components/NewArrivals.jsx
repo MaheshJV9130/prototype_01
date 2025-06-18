@@ -1,5 +1,6 @@
-import React, { useEffect, useState, useContext } from "react";
-import cartContext from "../context/cartItems";
+import React, { useEffect, useState } from "react";
+import { useSelector, useDispatch } from 'react-redux'
+import { decrement, increment } from '../redux/Cart/cartSlice'
 import { FaChevronLeft, FaChevronRight } from "react-icons/fa";
 
 const url = "https://fakestoreapi.com/products";
@@ -26,7 +27,8 @@ const StarRating = ({ rating }) => {
 
 const NewArrivals = () => {
   const [products, setProducts] = useState([]);
-  const { cartItems, setCartItems } = useContext(cartContext);
+  const cart = useSelector((state) => state.cart.value)
+  const dispatch = useDispatch()
   const scrollRef = React.useRef(null);
 
   const [showLeftArrow, setShowLeftArrow] = useState(false);
@@ -157,7 +159,7 @@ const NewArrivals = () => {
               <span>
                 <button
                   className="border border-gray-200 rounded-3xl px-4 py-3 bg-orange-400 text-lg font-medium cursor-pointer transition hover:bg-orange-200 "
-                  onClick={() => setCartItems(cartItems + 1)}
+                  onClick={() => dispatch(increment())}
                 >
                   Add to cart
                 </button>

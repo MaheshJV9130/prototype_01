@@ -1,6 +1,7 @@
-import React, { useContext, useState, useRef, useEffect } from "react";
+import React, {  useState, useRef, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import SignUpDiscountPopUp from "./SignUpDiscountPopUp";
+import { useSelector, useDispatch } from 'react-redux'
 import {
   faMagnifyingGlass,
   faCartShopping,
@@ -8,12 +9,11 @@ import {
   faBars,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import cartContext from "../context/cartItems";
+
 
 const NavigationBar = () => {
-  const { cartItems } = useContext(cartContext);
+  const cart = useSelector((state) => state.cart.value)
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
   const [showMobileSearch, setShowMobileSearch] = useState(false);
   const searchInputRef = useRef(null);
 
@@ -93,7 +93,7 @@ const NavigationBar = () => {
             aria-label="Cart"
           >
             <FontAwesomeIcon icon={faCartShopping} />
-            <span className="text-base align-top">{cartItems}</span>
+            <span className="text-base align-top">{cart}</span>
           </button>
 
           <button
